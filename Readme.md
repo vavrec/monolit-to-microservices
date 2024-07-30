@@ -23,7 +23,7 @@ Feature user
 - pridat logovan
 - pridat swagger
 - pridat secuirty
-- Restovky update vs patch
+- Restovky update vs patch -https://www.reddit.com/r/ExperiencedDevs/comments/pyleqb/recommendation_reading_booksblogs_for_best/
 - Co bz mela vrace restovka pro update a co pro delete ? 
 - pokud hledam by iD, tak mel bzch vracet 404? nerikam tim utocnikovy, ze to netrefil?
 - implmentovat SpanID atd.
