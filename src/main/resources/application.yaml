@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: monolitToMicroservices
+  mvc:
+    problemdetails:
+      enabled: true

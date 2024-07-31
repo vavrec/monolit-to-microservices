@@ -27,7 +27,13 @@ Feature user
 - Co bz mela vrace restovka pro update a co pro delete ? 
 - pokud hledam by iD, tak mel bzch vracet 404? nerikam tim utocnikovy, ze to netrefil?
 - implmentovat SpanID atd.
-
+- Na tohle jsem narazil pri implementovani error handleru https://www.rfc-editor.org/rfc/rfc7807.html  https://dev.to/noelopez/spring-rest-exception-handling-problem-details-2hkj
+- https://docs.spring.io/spring-boot/appendix/application-properties/index.html
 
 Feature file folder 
 - pohrat si s rekuryi v db - slozky
+
+
+
+Zajmavosti do readme 
+- error response je ve formatu 
