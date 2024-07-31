@@ -3,7 +3,7 @@ package cz.vavrecka.monolittomicroservices.user.service;
 
 import cz.vavrecka.monolittomicroservices.user.domain.User;
 import cz.vavrecka.monolittomicroservices.user.dto.NewUserDto;
-import cz.vavrecka.monolittomicroservices.user.exception.UserDoesNotExistsException;
+import cz.vavrecka.shared.exception.ObjectDoesNotExistsException;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -27,12 +27,12 @@ public class UserService {
             users.put(user.id(), user);
             return user;
         } else {
-            throw new UserDoesNotExistsException("User with id " + user.id() + " does not exist");
+            throw new ObjectDoesNotExistsException("User with id " + user.id() + " does not exist");
         }
     }
 
     public Optional<User> getUserById(UUID id) {
-        return Optional.of(users.get(id));
+        return Optional.ofNullable(users.get(id));
     }
 
     // TODO tady pridat Pagination
@@ -43,5 +43,4 @@ public class UserService {
     public void deleteUserById(UUID id) {
             users.remove(id);
     }
-
 }
