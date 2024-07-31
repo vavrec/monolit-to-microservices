@@ -43,5 +43,4 @@ public class UserService {
     public void deleteUserById(UUID id) {
             users.remove(id);
     }
-
 }
