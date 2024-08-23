@@ -37,3 +37,5 @@ Feature file folder
 
 Zajmavosti do readme 
 - error response je ve formatu 
+
+http://localhost:8080/swagger-ui.html 

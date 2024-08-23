@@ -27,13 +27,6 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping(produces = "application/json")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "500", description = "Internal error", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ProblemDetail.class))})})
-    public ResponseEntity<List<User>> getAllUsers() {
-        return ok(userService.getAllUsers());
-    }
 
     @GetMapping(path = "/{id}", produces = "application/json")
     @ApiResponses(value = {
