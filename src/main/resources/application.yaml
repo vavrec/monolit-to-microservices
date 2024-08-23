@@ -1,4 +1,10 @@
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/admin
+    username: admin
+    password: admin
+  flyway:
+    locations: classpath:db/user/
   application:
     name: monolitToMicroservices
   mvc:

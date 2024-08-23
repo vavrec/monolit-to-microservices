@@ -3,44 +3,41 @@ package cz.vavrecka.monolittomicroservices.user.service;
 
 import cz.vavrecka.monolittomicroservices.user.domain.User;
 import cz.vavrecka.monolittomicroservices.user.dto.NewUserDto;
+import cz.vavrecka.monolittomicroservices.user.repository.UserRepository;
 import cz.vavrecka.shared.exception.ObjectDoesNotExistsException;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Service
+@AllArgsConstructor
 public class UserService {
 
-    // TMP solution - az pripojim DB, tak zmenit
-    private final Map<UUID, User> users = new ConcurrentHashMap<>();
-
+    private final UserRepository userRepository;
 
     public User createUser(NewUserDto newUserDto) {
-        User user = new User(UUID.randomUUID(), newUserDto.firstName(), newUserDto.lastName(), newUserDto.email());
-        users.put(user.id(), user);
+        User user = new User(null, newUserDto.firstName(), newUserDto.lastName(), newUserDto.email());
+        userRepository.save(user);
         return user;
     }
 
     public User updateUser(User user) {
-        if (users.containsKey(user.id())) {
-            users.put(user.id(), user);
-            return user;
-        } else {
-            throw new ObjectDoesNotExistsException("User with id " + user.id() + " does not exist");
-        }
+        userRepository.findById(user.id()).
+        orElseThrow(() -> new ObjectDoesNotExistsException("User with id " + user.id() + " does not exist"));
+        return userRepository.save(user);
     }
 
-    public Optional<User> getUserById(UUID id) {
-        return Optional.ofNullable(users.get(id));
+    public Optional<User> getUserById(Long id) {
+        return userRepository.findById(id);
     }
 
     // TODO tady pridat Pagination
     public List<User> getAllUsers() {
-        return users.values().stream().toList();
+        return (List<User>) userRepository.findAll();
     }
 
-    public void deleteUserById(UUID id) {
-            users.remove(id);
+    public void deleteUserById(Long id) {
+          userRepository.deleteById(id);
     }
 }

@@ -39,7 +39,7 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "500", description = "Internal error", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ProblemDetail.class))})})
-    public ResponseEntity<User> getUserById(@PathVariable UUID id) {
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
         return userService.getUserById(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
@@ -64,7 +64,7 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "500", description = "Internal error", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ProblemDetail.class))})})
-    public ResponseEntity<Void> deleteUserById(@RequestParam UUID id) {
+    public ResponseEntity<Void> deleteUserById(@RequestParam Long id) {
         userService.deleteUserById(id);
         return ok().build();
     }
